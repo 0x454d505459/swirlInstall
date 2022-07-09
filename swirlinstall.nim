@@ -29,7 +29,7 @@ proc processArgs() =
                 let gitOut = git.errorStream().readStr(200)
                 if gitOut != "": error gitOut
                 info "Preparing Swirl for compilation using CMAKE"
-                let prepare = startProcess("cmake", swirlDir, ["-B", "build", "-DCMAKE_BUILD_TYPE=Debug", "-S", "Swirl"], options={poUsePath})
+                let prepare = startProcess("cmake", swirlDir, compilerOpt, options={poUsePath})
                 let prepareOut = prepare.errorStream().readStr(200)
                 if prepareOut != "": error prepareOut
                 info "Compiling Swirl with CMAKE"

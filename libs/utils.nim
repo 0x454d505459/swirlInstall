@@ -36,3 +36,8 @@ proc register_help*(calls: array[0..1,string], desc:string) =
     let space = " " * (50-len(thing))
     help_menu &= thing & space & desc
 
+when defined(windows):
+    const compilerOpt* = ["-B", "build", "-DCMAKE_BUILD_TYPE=Debug", "-S", "Swirl", "-G", "\"MinGW Makefiles\""]
+
+else:
+    const compilerOpt* = ["-B", "build", "-DCMAKE_BUILD_TYPE=Debug", "-S", "Swirl"]
